@@ -993,7 +993,7 @@ const searchIndex = [
   { label: "Для кофеен", hint: "Коллекция · серия Caffè", text: "caffe caffè кофейни кофейня кафе", target: "#collection" },
   { label: "Винные и сигарные бутики", hint: "Коллекция · серия Riserva", text: "riserva вино сигары винный бутик сигарный винотека магазин", target: "#wine-cigar" },
   { label: "Офис и переговорные", hint: "Коллекция · серия Studio", text: "studio офис кабинет переговорная приёмная рабочее место", target: "#office" },
-  { label: "Для дома", hint: "Коллекция · серия Casa", text: "casa дом кухня обеденная зона гостиная", target: "#home" },
+  { label: "Для дома", hint: "Коллекция · серия Dimora", text: "dimora casa дом кухня обеденная зона гостиная", target: "#home" },
   { label: "Цвет и фактура", hint: "Обивка", text: "обивка цвет фактура кожа ткань материал", target: "#materials" },
   { label: "Заказ и бриф", hint: "Раздел", text: "заказ бриф проект индивидуальный описание проекта", target: "#project" },
   { label: "О нас", hint: "Раздел", text: "о нас компания ателье мастера", target: "#about" },
