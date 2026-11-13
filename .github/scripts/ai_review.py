@@ -30,24 +30,36 @@ ASPECTS = {
             "проблемы адаптивности (телефон 360–430 px), горизонтальную прокрутку, проблемы доступности (фокус).",
 }
 
+ENDPOINTS = [
+    ("https://models.github.ai/inference/chat/completions", MODEL),
+    ("https://models.inference.ai.azure.com/chat/completions", MODEL.split("/")[-1]),
+]
+_ep = [0]
+
 def ask(system, user, max_tokens=1200):
-    for attempt in range(8):
-        r = requests.post(URL, headers={"Authorization": f"Bearer {TOKEN}", "Content-Type": "application/json"},
-                          json={"model": MODEL, "temperature": 0.2, "stream": False, "max_tokens": max_tokens,
+    for attempt in range(10):
+        url, model = ENDPOINTS[_ep[0]]
+        r = requests.post(url, allow_redirects=False,
+                          headers={"Authorization": f"Bearer {TOKEN}", "Content-Type": "application/json",
+                                   "Accept": "application/json", "X-GitHub-Api-Version": "2022-11-28"},
+                          json={"model": model, "temperature": 0.2, "stream": False, "max_tokens": max_tokens,
                                 "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]},
                           timeout=120)
-        if r.status_code == 200:
-            try:
-                return r.json()["choices"][0]["message"]["content"].strip()
-            except Exception:
-                print(f"  200, но ответ не JSON: {r.headers.get('content-type')} {r.text[:300]!r}", flush=True)
-                time.sleep(15)
-                continue
-        wait = int(r.headers.get("retry-after", 0) or 0) or 20 * (attempt + 1)
-        print(f"  HTTP {r.status_code}: {r.text[:200]} — жду {wait} с", flush=True)
-        if r.status_code in (401, 403, 404): return f"_Ошибка доступа к ИИ: HTTP {r.status_code} {r.text[:300]}_"
-        time.sleep(min(wait, 120))
-    return "_ИИ не ответил (лимит запросов)._"
+        ctype = r.headers.get("content-type", "")
+        if r.status_code == 200 and "json" in ctype:
+            return r.json()["choices"][0]["message"]["content"].strip()
+        print(f"  {url} -> HTTP {r.status_code} {ctype} {r.headers.get('location','')} {r.text[:200]!r}", flush=True)
+        if r.status_code == 429:
+            time.sleep(min(int(r.headers.get("retry-after", 0) or 0) or 30 * (attempt + 1), 120))
+            continue
+        if _ep[0] + 1 < len(ENDPOINTS):
+            _ep[0] += 1
+            print(f"  переключаюсь на {ENDPOINTS[_ep[0]][0]}", flush=True)
+            continue
+        if r.status_code >= 500:
+            time.sleep(20); continue
+        return f"_Ошибка доступа к ИИ: HTTP {r.status_code} {r.text[:300]}_"
+    return "_ИИ не ответил._"
 
 def chunks(s, n=CHUNK):
     return [s[i:i + n] for i in range(0, len(s), n)] or [""]
@@ -76,6 +88,11 @@ for i, c in enumerate(chunks(open(os.path.join(root, "styles.css"), encoding="ut
     jobs.append(("css", "styles.css", i, c))
 
 findings = []
+probe = ask("Ответь одним словом.", "Скажи: работает")
+print("Проверка связи с ИИ:", probe, flush=True)
+if probe.startswith("_"):
+    open(out_path, "w", encoding="utf-8").write("# AI-проверка не запустилась\n\n" + probe + "\n\n" + open(static_path, encoding="utf-8").read())
+    sys.exit(0)
 for n, (kind, p, i, c) in enumerate(jobs, 1):
     print(f"[{n}/{len(jobs)}] {kind} {p} часть {i + 1}", flush=True)
     system = BRAND + "\n\n" + ASPECTS[kind] + (
