@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f0e6">
+  <meta name="description" content="Отправьте образец или фото модели стула, и мы подготовим предложение по обивке и цене.">
+  <title>Отправить образец — Wrightson & Vale</title>
+  <link rel="icon" href="assets/wrightson-vale.png" type="image/png">
+  <link rel="stylesheet" href="fonts.css?v=v93">
+  <link rel="stylesheet" href="styles.css?v=v93">
+  <script src="sample.js?v=v94" defer></script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="index.html" aria-label="Wrightson &amp; Vale, на главную">
+        <img src="assets/wrightson-vale.png" alt="" width="54" height="54">
+        <span class="brand-type">
+          <span class="brand-name">Wrightson &amp; Vale</span>
+          <span class="brand-caption">Мебельное ателье</span>
+        </span>
+      </a>
+      <a class="button button-outline header-action" href="index.html#project">Назад к заказу</a>
+    </div>
+  </header>
+
+  <main class="shell sample-page">
+    <p class="eyebrow">Образец модели</p>
+    <h1>Пришлите образец, мы подготовим предложение</h1>
+    <p>Выберите модель, опишите, что хотите изменить, и приложите фото или файл. Мы вернёмся с вариантами обивки и ориентировочной ценой.</p>
+
+    <form class="project-form" id="sample-form">
+      <h3>Заявка на образец</h3>
+
+      <label for="sample-model">Модель</label>
+      <div class="select-wrap">
+        <select id="sample-model" name="model">
+          <option>Tide</option>
+          <option>Pier</option>
+          <option>Ripple</option>
+          <option>Ripple Bar</option>
+          <option>Cask</option>
+          <option>Leaf</option>
+          <option>Decant</option>
+          <option>Axis</option>
+          <option>Linea</option>
+          <option>Forum</option>
+          <option>Haven</option>
+          <option>Nook</option>
+          <option>Dune</option>
+          <option>Cove (кресло)</option>
+          <option>Другая модель</option>
+        </select>
+      </div>
+
+      <label for="sample-desc">Что нужно сделать</label>
+      <textarea id="sample-desc" name="description" rows="4" maxlength="2000" required placeholder="Например, нужна такая же модель, но с кожей и строчкой на спинке"></textarea>
+
+      <label for="sample-contact">Телефон или e-mail для ответа</label>
+      <input type="text" id="sample-contact" name="contact" maxlength="200" required autocomplete="off">
+
+      <label for="sample-file">Фото или файл образца</label>
+      <input type="file" id="sample-file" name="file" accept="image/*,.pdf" multiple>
+
+      <label class="consent-check"><input type="checkbox" name="consent" id="sample-consent" required><span>Я согласен на <a href="consent.html" target="_blank" rel="noopener">обработку персональных данных</a> и принимаю <a href="privacy.html" target="_blank" rel="noopener">политику конфиденциальности</a></span></label>
+      <button class="button button-primary" type="submit">Отправить заявку</button>
+      <p class="form-status" id="sample-status" role="status"></p>
+    </form>
+  </main>
+  <p class="shell footer-legal" style="padding-block:18px">© 2026 Wrightson &amp; Vale · ЗАО «ЖИЛПРОМСЕРВИС», ИНН 6215018827, ОГРН 1066215014876 · <a href="privacy.html">Политика конфиденциальности</a></p>
+</body>
+</html>
