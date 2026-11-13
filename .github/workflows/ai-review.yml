@@ -1,0 +1,48 @@
+name: AI-проверка сайта
+
+on:
+  push:
+    branches: [ai-review]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  models: read
+  issues: write
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Код сайта (ветка main)
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: site
+      - name: Скрипт проверки
+        uses: actions/checkout@v4
+        with:
+          path: tools
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install beautifulsoup4 requests
+      - name: Проверка ссылок, картинок и разметки (без ИИ)
+        run: python tools/.github/scripts/static_checks.py site > static.md
+      - name: ИИ-проверка (GitHub Models)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python tools/.github/scripts/ai_review.py site static.md report.md
+      - name: Отчёт в сводку
+        run: cat report.md >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ai-report
+          path: report.md
+      - name: Отчёт отдельным Issue
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          head -c 64000 report.md > body.md
+          gh issue create -R "$GITHUB_REPOSITORY" --title "AI-проверка сайта $(date +%d.%m.%Y)" --body-file body.md
