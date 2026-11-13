@@ -33,11 +33,16 @@ ASPECTS = {
 def ask(system, user, max_tokens=1200):
     for attempt in range(8):
         r = requests.post(URL, headers={"Authorization": f"Bearer {TOKEN}", "Content-Type": "application/json"},
-                          json={"model": MODEL, "temperature": 0.2, "max_tokens": max_tokens,
+                          json={"model": MODEL, "temperature": 0.2, "stream": False, "max_tokens": max_tokens,
                                 "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}]},
                           timeout=120)
         if r.status_code == 200:
-            return r.json()["choices"][0]["message"]["content"].strip()
+            try:
+                return r.json()["choices"][0]["message"]["content"].strip()
+            except Exception:
+                print(f"  200, но ответ не JSON: {r.headers.get('content-type')} {r.text[:300]!r}", flush=True)
+                time.sleep(15)
+                continue
         wait = int(r.headers.get("retry-after", 0) or 0) or 20 * (attempt + 1)
         print(f"  HTTP {r.status_code}: {r.text[:200]} — жду {wait} с", flush=True)
         if r.status_code in (401, 403, 404): return f"_Ошибка доступа к ИИ: HTTP {r.status_code} {r.text[:300]}_"
