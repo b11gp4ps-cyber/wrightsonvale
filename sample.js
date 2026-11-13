@@ -1,6 +1,6 @@
 // Адрес функции в Яндекс Облаке, которая принимает заявки (данные хранятся в России, 152-ФЗ).
 // Пока пусто: заявка сохраняется в файл и открывается письмом на wv@wrightsonvale.ru.
-const SAMPLE_ENDPOINT = "";
+const SAMPLE_ENDPOINT = "https://functions.yandexcloud.net/d4e975m4m3tro265j0kb";
 
 const sampleForm = document.querySelector("#sample-form");
 const sampleStatus = document.querySelector("#sample-status");

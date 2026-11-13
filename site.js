@@ -1310,7 +1310,7 @@ updateCompare();
 
 // Куда уходят заявки: адрес функции в Яндекс Облаке (данные хранятся в России, 152-ФЗ).
 // Пока пусто — заявка открывается письмом в почте посетителя на wv@wrightsonvale.ru.
-const LEAD_ENDPOINT = "";
+const LEAD_ENDPOINT = "https://functions.yandexcloud.net/d4e975m4m3tro265j0kb";
 const LEAD_EMAIL = "wv@wrightsonvale.ru";
 // Номер счётчика Яндекс Метрики, например "98765432". Пока пусто — счётчик не подключается.
 const METRIKA_ID = "";
