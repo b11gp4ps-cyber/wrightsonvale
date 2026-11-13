@@ -1,6 +1,6 @@
-// Адрес сервиса, который пересылает заявки и файлы на нужную почту (например, Formspree).
-// Пока пустой: заявка сохраняется в файл для отправки вручную.
-const SAMPLE_ENDPOINT = "https://formsubmit.co/ajax/wv@wrightsonvale.ru";
+// Адрес функции в Яндекс Облаке, которая принимает заявки (данные хранятся в России, 152-ФЗ).
+// Пока пусто: заявка сохраняется в файл и открывается письмом на wv@wrightsonvale.ru.
+const SAMPLE_ENDPOINT = "";
 
 const sampleForm = document.querySelector("#sample-form");
 const sampleStatus = document.querySelector("#sample-status");
@@ -41,7 +41,7 @@ sampleForm.addEventListener("submit", async (event) => {
   sampleStatus.textContent = "Отправляем...";
   try {
     const hasFiles = sampleForm.querySelector("#sample-file").files.length > 0;
-    const payload = { _subject: "Образец модели: " + data.get("model"), "Тип": "Образец модели", "Модель": data.get("model"), "Что нужно сделать": data.get("description"), "Контакт": data.get("contact"), "Фото": hasFiles ? "клиент пришлёт ответным письмом" : "не приложены", _template: "table", _captcha: "false" };
+    const payload = { _subject: "Образец модели: " + data.get("model"), "Тип": "Образец модели", "Модель": data.get("model"), "Что нужно сделать": data.get("description"), "Контакт": data.get("contact"), "Фото": hasFiles ? "клиент пришлёт ответным письмом" : "не приложены", "Согласие на обработку ПДн": "да, " + new Date().toLocaleString("ru-RU"), _page: location.href };
     const response = await fetch(SAMPLE_ENDPOINT, { method: "POST", body: JSON.stringify(payload), headers: { "Content-Type": "application/json", Accept: "application/json" } });
     const result = await response.json().catch(() => ({}));
     if (!response.ok || String(result.success) === "false") throw new Error("bad status");

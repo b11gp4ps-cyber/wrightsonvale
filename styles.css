@@ -1763,3 +1763,16 @@ h2 em, .materials h2 em, .reserve-copy h2 em, .project-band .project-intro h2 em
 /* «Подробнее о модели» — тёмная ссылка на светлом фоне */
 .piece-dialog .piece-page-link { color: var(--olive); border-color: var(--olive); }
 .piece-dialog .piece-page-link:hover { color: var(--ink); border-color: var(--ink); }
+
+/* Согласие на обработку персональных данных */
+.consent-check { display: flex; gap: 10px; align-items: flex-start; margin: 14px 0 4px; font-size: 13px; line-height: 1.5; color: var(--muted); cursor: pointer; text-align: left; }
+.consent-check input { flex: none; width: 18px; height: 18px; margin: 1px 0 0; accent-color: var(--olive); }
+.consent-check a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.project-band .consent-check, .project .consent-check { color: inherit; opacity: .85; }
+.footer-legal { margin-top: 6px; font-size: 11px; line-height: 1.5; color: var(--muted); }
+.footer-legal a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.footer-end a { color: inherit; text-decoration: underline; text-underline-offset: 2px; }
+.project-form .consent-check, .samples-form .consent-check { display: flex; gap: 10px; margin: 16px 0 6px; font-weight: 400; font-size: 13px; letter-spacing: 0; text-transform: none; line-height: 1.5; color: var(--muted); }
+.project-form .consent-check span, .samples-form .consent-check span { font-weight: 400; }
+.project-form .consent-check a, .samples-form .consent-check a { font-weight: 500; color: var(--ink); }
+.project-form .consent-check input, .samples-form .consent-check input { width: 18px; height: 18px; min-height: 0; padding: 0; margin: 1px 0 0; flex: none; }

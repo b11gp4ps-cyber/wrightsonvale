@@ -1308,9 +1308,9 @@ updateCompare();
 
 /* ===== Заявки, подбор, расчёт, образцы (11.11) ===== */
 
-// Куда уходят заявки. FormSubmit пересылает их на почту; при первой заявке
-// на wv@wrightsonvale.ru придёт письмо «Activate Form» — в нём нужно нажать кнопку подтверждения.
-const LEAD_ENDPOINT = "https://formsubmit.co/ajax/wv@wrightsonvale.ru";
+// Куда уходят заявки: адрес функции в Яндекс Облаке (данные хранятся в России, 152-ФЗ).
+// Пока пусто — заявка открывается письмом в почте посетителя на wv@wrightsonvale.ru.
+const LEAD_ENDPOINT = "";
 const LEAD_EMAIL = "wv@wrightsonvale.ru";
 // Номер счётчика Яндекс Метрики, например "98765432". Пока пусто — счётчик не подключается.
 const METRIKA_ID = "";
@@ -1331,7 +1331,7 @@ function reachGoal(goal) {
 
 async function sendLead(fields, plainText) {
   if (fields._honey) return "sent";
-  const clean = Object.fromEntries(Object.entries(fields).filter(([key, value]) => key !== "_honey" && String(value ?? "").trim() !== ""));
+  const clean = Object.fromEntries(Object.entries(fields).filter(([key, value]) => key !== "_honey" && key !== "consent" && String(value ?? "").trim() !== ""));
   if (LEAD_ENDPOINT) {
     try {
       const controller = new AbortController();
@@ -1339,7 +1339,7 @@ async function sendLead(fields, plainText) {
       const response = await fetch(LEAD_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ ...clean, _template: "table", _captcha: "false" }),
+        body: JSON.stringify({ ...clean, "Согласие на обработку ПДн": "да, " + new Date().toLocaleString("ru-RU"), _page: location.href }),
         signal: controller.signal,
       });
       clearTimeout(timer);

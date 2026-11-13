@@ -7,11 +7,9 @@
   <meta name="description" content="Отправьте образец или фото модели стула, и мы подготовим предложение по обивке и цене.">
   <title>Отправить образец — Wrightson & Vale</title>
   <link rel="icon" href="assets/wrightson-vale.png" type="image/png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap">
-  <link rel="stylesheet" href="styles.css?v=v92">
-  <script src="sample.js?v=v91" defer></script>
+  <link rel="stylesheet" href="fonts.css?v=v93">
+  <link rel="stylesheet" href="styles.css?v=v93">
+  <script src="sample.js?v=v93" defer></script>
 </head>
 <body>
   <header class="site-header">
@@ -65,9 +63,11 @@
       <label for="sample-file">Фото или файл образца</label>
       <input type="file" id="sample-file" name="file" accept="image/*,.pdf" multiple>
 
+      <label class="consent-check"><input type="checkbox" name="consent" id="sample-consent" required><span>Я согласен на <a href="consent.html" target="_blank" rel="noopener">обработку персональных данных</a> и принимаю <a href="privacy.html" target="_blank" rel="noopener">политику конфиденциальности</a></span></label>
       <button class="button button-primary" type="submit">Отправить заявку</button>
       <p class="form-status" id="sample-status" role="status"></p>
     </form>
   </main>
+  <p class="shell footer-legal" style="padding-block:18px">© 2026 Wrightson &amp; Vale · ЗАО «ЖИЛПРОМСЕРВИС», ИНН 6215018827, ОГРН 1066215014876 · <a href="privacy.html">Политика конфиденциальности</a></p>
 </body>
 </html>
