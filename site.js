@@ -1168,7 +1168,6 @@ document.querySelectorAll("[data-open-chair]").forEach((button) => {
 
 // ---------------------------------------------------------------------------
 // Карточки: точки цветов, смена фото при наведении, сравнение моделей.
-const TELEGRAM_URL = ""; // например "https://t.me/wrightson_vale_bot" — кнопка появится сама
 const compareKeys = [];
 const compareBar = document.querySelector("#compare-bar");
 const compareText = document.querySelector("#compare-bar-text");
@@ -1297,8 +1296,6 @@ updateCompare();
   const fab = document.querySelector("#contact-fab");
   const panel = document.querySelector("#contact-fab-panel");
   const toggle = fab.querySelector(".contact-fab-toggle");
-  const telegram = document.querySelector("#contact-fab-telegram");
-  if (TELEGRAM_URL) { telegram.href = TELEGRAM_URL; telegram.target = "_blank"; telegram.rel = "noopener"; telegram.hidden = false; }
   const setOpen = (open) => { panel.hidden = !open; toggle.setAttribute("aria-expanded", String(open)); };
   toggle.addEventListener("click", () => setOpen(panel.hidden));
   panel.addEventListener("click", (event) => { if (event.target.closest("a")) setOpen(false); });
