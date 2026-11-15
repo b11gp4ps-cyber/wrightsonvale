@@ -1,2 +1,0 @@
-model-viewer 4.0.0 — https://github.com/google/model-viewer
-Apache License 2.0. Copyright Google LLC.

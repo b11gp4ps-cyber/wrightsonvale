@@ -1776,17 +1776,4 @@ h2 em, .materials h2 em, .reserve-copy h2 em, .project-band .project-intro h2 em
 .project-form .consent-check span, .samples-form .consent-check span { font-weight: 400; }
 .project-form .consent-check a, .samples-form .consent-check a { font-weight: 500; color: var(--ink); }
 .project-form .consent-check input, .samples-form .consent-check input { width: 18px; height: 18px; min-height: 0; padding: 0; margin: 1px 0 0; flex: none; }
-
-/* 3D-просмотр на странице модели */
-.mp-photo[data-model] { position: relative; }
-.mp-view { position: absolute; top: 14px; left: 14px; z-index: 3; display: inline-flex; padding: 4px; gap: 4px; border-radius: var(--radius-pill); background: rgba(245, 240, 230, .92); box-shadow: 0 2px 10px rgba(41, 39, 31, .12); }
-.mp-view button { min-width: 64px; padding: 8px 14px; border: 0; border-radius: var(--radius-pill); background: transparent; color: var(--ink); font: 600 14px/1 var(--sans); cursor: pointer; }
-.mp-view button[aria-pressed="true"] { background: var(--olive); color: #fff8eb; }
-.mp-view button:focus-visible { outline: 2px solid var(--olive); outline-offset: 2px; }
-.mp-3d { position: relative; aspect-ratio: 4 / 5; border-radius: var(--radius-card); background: #efe8dc; overflow: hidden; }
-.mp-3d model-viewer { width: 100%; height: 100%; background: #efe8dc; --poster-color: transparent; }
-.mp-3d-loading, .mp-3d-error { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; color: var(--muted); font-size: 15px; }
-.mp-3d-hint { position: absolute; left: 0; right: 0; bottom: 12px; margin: 0; text-align: center; color: var(--muted); font-size: 13px; pointer-events: none; }
-.mp-ar { position: absolute; right: 14px; bottom: 40px; padding: 10px 16px; border: 0; border-radius: var(--radius-pill); background: var(--olive); color: #fff8eb; font: 600 14px/1 var(--sans); cursor: pointer; }
 .mp-specs a { color: var(--bronze); text-decoration: underline; text-underline-offset: 3px; }
-@media (max-width: 600px) { .mp-3d-hint { font-size: 12px; bottom: 6px; padding: 0 16px; } }
