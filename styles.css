@@ -1777,3 +1777,14 @@ h2 em, .materials h2 em, .reserve-copy h2 em, .project-band .project-intro h2 em
 .project-form .consent-check a, .samples-form .consent-check a { font-weight: 500; color: var(--ink); }
 .project-form .consent-check input, .samples-form .consent-check input { width: 18px; height: 18px; min-height: 0; padding: 0; margin: 1px 0 0; flex: none; }
 .mp-specs a { color: var(--bronze); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Детали */
+.details { padding-block: clamp(55px, 5.8vw, 92px); border-top: 1px solid var(--line); }
+.details h2 em { font-style: italic; }
+.details-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 24px); }
+.detail-item { margin: 0; }
+.detail-item img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--radius-card); }
+.detail-item figcaption { padding: 12px 2px 0; color: var(--muted); font-size: 14px; line-height: 1.5; }
+.detail-item figcaption b { display: block; margin-bottom: 4px; color: var(--ink); font-family: var(--serif); font-size: 19px; font-weight: 500; }
+@media (max-width: 900px) { .details-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.object-item.is-land img { aspect-ratio: 4 / 3 }
