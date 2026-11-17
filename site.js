@@ -752,7 +752,12 @@ const updateHeaderState = () => {
   const probe = document.elementFromPoint(window.innerWidth / 2, siteHeader.offsetHeight + 6);
   siteHeader.classList.toggle("is-on-dark", Boolean(probe?.closest(".story:not(.about)")));
 };
-window.addEventListener("scroll", updateHeaderState, { passive: true });
+// Не чаще одного раза за кадр: прокрутка остаётся плавной.
+let headerFrame = 0;
+window.addEventListener("scroll", () => {
+  if (headerFrame) return;
+  headerFrame = requestAnimationFrame(() => { headerFrame = 0; updateHeaderState(); });
+}, { passive: true });
 updateHeaderState();
 
 // Слайды «О стульях»: листаются сами и вручную (стрелки, свайп, клавиши, выбор модели).
