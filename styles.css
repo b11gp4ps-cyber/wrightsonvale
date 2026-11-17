@@ -1788,3 +1788,7 @@ h2 em, .materials h2 em, .reserve-copy h2 em, .project-band .project-intro h2 em
 .detail-item figcaption b { display: block; margin-bottom: 4px; color: var(--ink); font-family: var(--serif); font-size: 19px; font-weight: 500; }
 @media (max-width: 900px) { .details-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 .object-item.is-land img { aspect-ratio: 4 / 3 }
+
+/* Зоны нажатия ≥24px для мелких ссылок (аудит 17.11) */
+.footer-nav a, .footer-models a { display: inline-flex; align-items: center; min-height: 24px; }
+.consent-check a, .footer-end a, .footer-legal a, .mp-footer a, .mp-crumbs a, .hero-figure-link { padding-block: 5px; margin-block: -5px; }

@@ -55,7 +55,9 @@ for (const [key, chair] of Object.entries(chairs)) {
   const low = Math.min(...prices), high = Math.max(...prices);
   const size = sizes[chair.name];
   const title = `${chair.name} — ${seoType} | Wrightson & Vale`;
-  const desc = `${typeLabel} ${chair.name}: ${chair.description.replace(/\.$/, "")}. Обивка: ${kinds.map((k) => kindLabel[k].toLowerCase()).join(" или ")} или ваш материал, от ${fmt(low)}. Производство полного цикла, доставка по России и СНГ.`;
+  const firstSentence = chair.description.split(/(?<=\.)\s/)[0].replace(/\.$/, "");
+  let desc = `${typeLabel} ${chair.name} ручной работы. ${firstSentence}. Обивка: ${kinds.map((k) => kindLabel[k].toLowerCase()).join(", ")} или ваш материал, от ${fmt(low)}.`;
+  if (desc.length > 160) desc = `${typeLabel} ${chair.name} ручной работы. Обивка: ${kinds.map((k) => kindLabel[k].toLowerCase()).join(", ")} или ваш материал, от ${fmt(low)}. Доставка по России и СНГ.`;
   const url = `${SITE}/models/${key}.html`;
   const ogImage = `${SITE}/assets/${trios[key] ? trios[key] + ".webp" : chair.variants[0].photo.replace("assets/", "")}`;
   const ld = {
