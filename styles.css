@@ -1792,6 +1792,3 @@ h2 em, .materials h2 em, .reserve-copy h2 em, .project-band .project-intro h2 em
 /* Зоны нажатия ≥24px для мелких ссылок (аудит 17.11) */
 .footer-nav a, .footer-models a { display: inline-flex; align-items: center; min-height: 24px; }
 .consent-check a, .footer-end a, .footer-legal a, .mp-footer a, .mp-crumbs a, .hero-figure-link { padding-block: 5px; margin-block: -5px; }
-
-/* Шапка: текст страницы под полупрозрачной шапкой размывается и не накладывается на «Мебельное ателье» */
-.site-header:not(.is-scrolled)::before { -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); }

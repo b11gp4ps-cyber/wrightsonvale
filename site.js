@@ -745,10 +745,17 @@ const siteHeader = document.querySelector(".site-header");
 let lastScrollY = window.scrollY;
 const updateHeaderState = () => {
   const y = window.scrollY;
-  siteHeader.classList.toggle("is-scrolled", y > 120);
-  if (y > lastScrollY && y > 120) siteHeader.classList.add("is-hidden");
-  else if (y < lastScrollY) siteHeader.classList.remove("is-hidden");
-  lastScrollY = y;
+  // Гистерезис: при сжатии шапки страница сдвигается примерно на 25px; без запаса
+  // шапка переключалась туда-обратно каждый кадр и мигала.
+  const scrolled = siteHeader.classList.contains("is-scrolled");
+  if (!scrolled && y > 120) siteHeader.classList.add("is-scrolled");
+  else if (scrolled && y < 60) siteHeader.classList.remove("is-scrolled");
+  const delta = y - lastScrollY;
+  if (Math.abs(delta) >= 6) {
+    if (delta > 0 && y > 120) siteHeader.classList.add("is-hidden");
+    else if (delta < 0) siteHeader.classList.remove("is-hidden");
+    lastScrollY = y;
+  }
   const probe = document.elementFromPoint(window.innerWidth / 2, siteHeader.offsetHeight + 6);
   siteHeader.classList.toggle("is-on-dark", Boolean(probe?.closest(".story:not(.about)")));
 };
