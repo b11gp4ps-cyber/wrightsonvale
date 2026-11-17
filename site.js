@@ -731,10 +731,9 @@ const storyFrameSets = storyHosts.map((host) => {
     if (host === storyBand) {
       // Full photo in the centre; a blurred copy of the same photo fills the sides (see .has-fill in CSS).
       frame.classList.add("has-fill");
-      frame.style.setProperty("--photo", `url("${photo}")`);
-    } else {
-      frame.style.backgroundImage = `url("${photo}")`;
     }
+    // Фото подгружается перед показом слайда (loadStoryFrame), а не все сразу.
+    frame.dataset.photo = photo;
     layer.append(frame);
     return frame;
   });
@@ -841,10 +840,26 @@ function updateStoryControls() {
   });
 }
 
+function loadStoryFrame(frames, index) {
+  const frame = frames[(index + frames.length) % frames.length];
+  const photo = frame && frame.dataset.photo;
+  if (!photo) return;
+  if (frame.classList.contains("has-fill")) frame.style.setProperty("--photo", `url("${photo}")`);
+  else frame.style.backgroundImage = `url("${photo}")`;
+  delete frame.dataset.photo;
+}
+
+// Пока блок со слайдами вне экрана или вкладка скрыта, слайды не перелистываются и не грузят фото.
+let storyVisible = true;
+if (storyBand && "IntersectionObserver" in window) {
+  new IntersectionObserver((entries) => { storyVisible = entries[0].isIntersecting; }, { rootMargin: "200px" }).observe(storyBand);
+}
+
 function scheduleStory(delay = STORY_DELAY) {
   clearTimeout(storyTimer);
   storyTimer = setTimeout(() => {
-    showStory(storyCurrent + 1);
+    if (storyVisible && !document.hidden) showStory(storyCurrent + 1);
+    else scheduleStory(delay);
   }, delay);
 }
 
@@ -852,7 +867,12 @@ function showStory(index, byUser = false) {
   if (index < 0 && !byUser) index = 0;
   storyFrameSets.forEach((frames) => frames[storyCurrent].classList.remove("is-active"));
   storyCurrent = (index + storyPhotos.length) % storyPhotos.length;
-  storyFrameSets.forEach((frames) => frames[storyCurrent].classList.add("is-active"));
+  storyFrameSets.forEach((frames) => {
+    loadStoryFrame(frames, storyCurrent);
+    loadStoryFrame(frames, storyCurrent + 1);
+    loadStoryFrame(frames, storyCurrent - 1);
+    frames[storyCurrent].classList.add("is-active");
+  });
   updateStoryControls();
   // Слайды листаются всегда, независимо от настройки «уменьшить движение» в системе.
   // После ручного переключения автопрокрутка ждёт дольше, чтобы фото можно было рассмотреть.
@@ -1156,7 +1176,13 @@ if (lounge) {
   }, { passive: true });
 
   // Подгружаем все фото заранее, чтобы переключение было мгновенным.
-  cove.variants.forEach((variant) => { new Image().src = variant.photo; new Image().src = variant.room; });
+  const preloadLounge = () => cove.variants.forEach((variant) => { new Image().src = variant.photo; new Image().src = variant.room; });
+  if ("IntersectionObserver" in window) {
+    const loungeObserver = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) { preloadLounge(); loungeObserver.disconnect(); }
+    }, { rootMargin: "600px" });
+    loungeObserver.observe(lounge);
+  } else preloadLounge();
   renderLounge();
 }
 

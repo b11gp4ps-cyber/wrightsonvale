@@ -107,7 +107,7 @@ for (const [key, chair] of Object.entries(chairs)) {
 <body class="model-page">
   <header class="mp-header">
     <div class="shell mp-header-inner">
-      <a class="mp-brand" href="../index.html"><img src="../assets/wrightson-vale.png" alt="" width="40" height="40"><span>Wrightson &amp; Vale</span></a>
+      <a class="mp-brand" href="../index.html"><img src="../assets/wrightson-vale.webp" alt="" width="40" height="40"><span>Wrightson &amp; Vale</span></a>
       <nav class="mp-nav" aria-label="Навигация">
         <a href="../index.html#collections">Все модели</a>
         <a href="../index.html?model=${enc}#pick">Расчёт</a>
