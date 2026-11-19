@@ -730,7 +730,21 @@ const sizes = {
   "Dune": { w: 450, d: 480, h: 780, seat: 650 },
   "Cove": { w: 820, d: 780, h: 730, seat: 420 },
   "Ripple": { w: 480, d: 540, h: 800, seat: 460 },
-  "Ripple Bar": { w: 480, d: 520, h: 970, seat: 650 }
+  "Ripple Bar": { w: 480, d: 520, h: 970, seat: 650 },
+  "Swell": { w: 600, d: 620, h: 760, seat: 450 },
+  "Jetty": { w: 470, d: 500, h: 1000, seat: 750 },
+  "Tier": { w: 500, d: 560, h: 800, seat: 460 },
+  "Tier Bar": { w: 490, d: 520, h: 960, seat: 650 },
+  "Lagoon": { w: 780, d: 760, h: 740, seat: 420 },
+  "Cellar": { w: 760, d: 800, h: 760, seat: 420 },
+  "Fern": { w: 540, d: 580, h: 880, seat: 470 },
+  "Carafe": { w: 520, d: 540, h: 1000, seat: 750 },
+  "Meridian": { w: 640, d: 640, h: 960, seat: 480 },
+  "Stroke": { w: 620, d: 620, h: 780, seat: 450 },
+  "Atrium": { w: 860, d: 820, h: 740, seat: 400 },
+  "Tuxedo": { w: 500, d: 580, h: 960, seat: 470 },
+  "Hearth": { w: 800, d: 780, h: 760, seat: 420 },
+  "Mesa": { w: 460, d: 480, h: 790, seat: 650 }
 };
 
 function formatSize(size) {
