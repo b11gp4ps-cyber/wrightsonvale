@@ -14,10 +14,10 @@ const SITE = "https://wrightsonvale.ru";
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 const collections = {
-  cafe: { title: "Для кофеен", series: "Caffè", anchor: "collection", keys: ["tide", "pier", "ripple", "ripplebar", "cove"] },
-  wine: { title: "Винные и сигарные бутики", series: "Riserva", anchor: "wine-cigar", keys: ["cask", "leaf", "decant"] },
-  office: { title: "Офис и переговорные", series: "Studio", anchor: "office", keys: ["axis", "linea", "forum"] },
-  home: { title: "Для дома", series: "Dimora", anchor: "home", keys: ["haven", "nook", "dune"] },
+  cafe: { title: "Для кофеен", series: "Caffè", anchor: "collection", keys: ["tide", "pier", "ripple", "ripplebar", "cove", "swell", "jetty"] },
+  wine: { title: "Винные и сигарные бутики", series: "Riserva", anchor: "wine-cigar", keys: ["cask", "leaf", "decant", "cellar", "fern", "carafe"] },
+  office: { title: "Офис и переговорные", series: "Studio", anchor: "office", keys: ["axis", "linea", "forum", "meridian", "stroke", "atrium"] },
+  home: { title: "Для дома", series: "Dimora", anchor: "home", keys: ["haven", "nook", "dune", "tuxedo"] },
 };
 const types = {
   tide: ["Кресло для кофейни", "кресло для кофейни ручной работы"],
@@ -34,6 +34,15 @@ const types = {
   haven: ["Обеденный стул", "мягкий обеденный стул ручной работы"],
   nook: ["Кресло для отдыха", "кресло для чтения и отдыха ручной работы"],
   dune: ["Полубарный стул", "полубарный стул для кухонного острова"],
+  swell: ["Кресло для кофейни", "кресло для кофейни ручной работы"],
+  jetty: ["Барный стул", "барный стул с мягкой спинкой ручной работы"],
+  cellar: ["Кресло для винного лаунжа", "лаунж-кресло для винного бара ручной работы"],
+  fern: ["Стул для винного бара", "стул для винного бара и ресторана"],
+  carafe: ["Барный стул", "барный стул в коже для винного бара"],
+  meridian: ["Рабочее кресло", "рабочее кресло ручной работы"],
+  stroke: ["Кресло для переговорной", "кресло для переговорной ручной работы"],
+  atrium: ["Лаунж-кресло", "лаунж-кресло для лобби и зоны ожидания"],
+  tuxedo: ["Обеденный стул", "обеденный стул в съёмном чехле ручной работы"],
 };
 const trios = { pier: "pier-trio", cask: "cask-trio", forum: "forum-trio", haven: "haven-trio", nook: "nook-trio", tide: "tide2-trio", ripple: "ripple-trio", ripplebar: "ripple-bar-trio", cove: "cove-trio", leaf: "leaf2-trio", decant: "decant2-trio", axis: "axis2-trio", linea: "linea2-trio", dune: "dune2-trio" };
 const interiors = {
@@ -41,6 +50,11 @@ const interiors = {
   decant: ["int-decant", "Винный бар"], leaf: ["int-leaf", "Дегустационный зал"], axis: ["int-axis", "Кабинет"],
   dune: ["int-dune", "Кухонный остров"], haven: ["int-haven", "Столовая"], nook: ["int-nook", "Зимний сад"],
   cove: ["cove-terracotta-room", "Светлая гостиная"], linea: ["linea2-office", "Переговорная"],
+  swell: ["int-swell", "Кофейня у витрины"],
+  cellar: ["int-cellar", "Винный лаунж"],
+  stroke: ["int-stroke", "Переговорная"],
+  atrium: ["int-atrium", "Лобби"],
+  tuxedo: ["int-tuxedo", "Столовая"],
 };
 const kindLabel = { leather: "Кожа", fabric: "Ткань" };
 const collOf = (key) => Object.entries(collections).find(([, c]) => c.keys.includes(key));
