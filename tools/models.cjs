@@ -14,10 +14,10 @@ const SITE = "https://wrightsonvale.ru";
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
 const collections = {
-  cafe: { title: "Для кофеен", series: "Caffè", anchor: "collection", keys: ["tide", "pier", "ripple", "ripplebar", "cove", "swell", "jetty"] },
+  cafe: { title: "Для кофеен", series: "Caffè", anchor: "collection", keys: ["tide", "pier", "ripple", "ripplebar", "cove", "swell", "jetty", "tier", "tierbar", "lagoon"] },
   wine: { title: "Винные и сигарные бутики", series: "Riserva", anchor: "wine-cigar", keys: ["cask", "leaf", "decant", "cellar", "fern", "carafe"] },
   office: { title: "Офис и переговорные", series: "Studio", anchor: "office", keys: ["axis", "linea", "forum", "meridian", "stroke", "atrium"] },
-  home: { title: "Для дома", series: "Dimora", anchor: "home", keys: ["haven", "nook", "dune", "tuxedo"] },
+  home: { title: "Для дома", series: "Dimora", anchor: "home", keys: ["haven", "nook", "dune", "tuxedo", "hearth", "mesa"] },
 };
 const types = {
   tide: ["Кресло для кофейни", "кресло для кофейни ручной работы"],
@@ -43,6 +43,11 @@ const types = {
   stroke: ["Кресло для переговорной", "кресло для переговорной ручной работы"],
   atrium: ["Лаунж-кресло", "лаунж-кресло для лобби и зоны ожидания"],
   tuxedo: ["Обеденный стул", "обеденный стул в съёмном чехле ручной работы"],
+  tier: ["Обеденный стул", "обеденный стул для кафе и ресторана ручной работы"],
+  tierbar: ["Полубарный стул", "полубарный стул ручной работы"],
+  lagoon: ["Лаунж-кресло", "лаунж-кресло ручной работы"],
+  hearth: ["Кресло для отдыха", "кресло для чтения и отдыха ручной работы"],
+  mesa: ["Полубарный стул", "полубарный стул для кухонного острова"],
 };
 const trios = { pier: "pier-trio", cask: "cask-trio", forum: "forum-trio", haven: "haven-trio", nook: "nook-trio", tide: "tide2-trio", ripple: "ripple-trio", ripplebar: "ripple-bar-trio", cove: "cove-trio", leaf: "leaf2-trio", decant: "decant2-trio", axis: "axis2-trio", linea: "linea2-trio", dune: "dune2-trio" };
 const interiors = {
@@ -55,6 +60,7 @@ const interiors = {
   stroke: ["int-stroke", "Переговорная"],
   atrium: ["int-atrium", "Лобби"],
   tuxedo: ["int-tuxedo", "Столовая"],
+  tierbar: ["int-tierbar", "Барная стойка"],
 };
 const kindLabel = { leather: "Кожа", fabric: "Ткань" };
 const collOf = (key) => Object.entries(collections).find(([, c]) => c.keys.includes(key));
