@@ -1080,7 +1080,7 @@ if (projectBand) {
   const projectLayer = document.createElement("div");
   projectLayer.className = "story-slides";
   projectLayer.setAttribute("aria-hidden", "true");
-  const projectFrames = ["assets/cafe-hero-small.webp", "assets/reserve-interior.webp"].map((photo) => {
+  const projectFrames = ["assets/cafe-hero.webp", "assets/reserve-interior.webp"].map((photo) => {
     const frame = document.createElement("div");
     frame.className = "story-slide";
     frame.style.backgroundImage = `url("${photo}")`;
