@@ -941,7 +941,7 @@ let activeVariant;
 
 // Ориентировочные цены, ₽. Заменить на свои после расчёта себестоимости.
 const priceList = { leather: 35000, fabric: 26000 };
-const priceOverrides = { "Cove": { fabric: 48000, leather: 56000 } }; // например: { "Tide": { leather: 42000 } }
+const priceOverrides = { "Cove": { fabric: 56000, leather: 56000 } }; // например: { "Tide": { leather: 42000 } }
 const priceLine = document.querySelector("#price-line");
 const briefPreview = document.querySelector("#brief-preview");
 const briefPreviewImage = document.querySelector("#brief-preview-image");
