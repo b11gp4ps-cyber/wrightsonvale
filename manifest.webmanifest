@@ -1,0 +1,18 @@
+{
+  "name": "Wrightson & Vale — авторская мебель ручной работы",
+  "short_name": "W&V",
+  "description": "Стулья и кресла ручной работы для кофеен, винных бутиков, офисов и домов.",
+  "lang": "ru",
+  "id": "/",
+  "start_url": "/?source=app",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#f5f0e6",
+  "theme_color": "#f5f0e6",
+  "icons": [
+    { "src": "/assets/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/assets/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

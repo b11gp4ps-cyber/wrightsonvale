@@ -105,7 +105,7 @@ for (const [key, chair] of Object.entries(chairs)) {
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f5f0e6">
   <title>${esc(chair.name + " — " + typeLabel.toLowerCase() + " | Wrightson & Vale")}</title>
-  <meta name="apple-mobile-web-app-title" content="Wrightson &amp; Vale">
+  <meta name="apple-mobile-web-app-title" content="W&amp;V">
   <meta name="description" content="${esc(desc)}">
   <link rel="canonical" href="${url}">
   <meta property="og:type" content="product">
@@ -119,6 +119,11 @@ for (const [key, chair] of Object.entries(chairs)) {
   <link rel="icon" href="../favicon.ico" sizes="any">
   <link rel="icon" href="../favicon.png" type="image/png" sizes="120x120">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <script>if("serviceWorker"in navigator)addEventListener("load",function(){navigator.serviceWorker.register("/sw.js")});</script>
   <link rel="stylesheet" href="../fonts.css?v=v93">
   <link rel="stylesheet" href="../styles.css?v=__V__">
   <script type="application/ld+json">${JSON.stringify(ld)}</script>

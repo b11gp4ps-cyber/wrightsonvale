@@ -32,3 +32,13 @@ AddType application/manifest+json .webmanifest
   ExpiresByType image/png "access plus 1 year"
   ExpiresByType image/x-icon "access plus 1 month"
 </IfModule>
+
+# Веб-приложение: сервис-воркер и манифест не кешировать надолго
+<FilesMatch "^(sw\.js|manifest\.webmanifest)$">
+  <IfModule mod_headers.c>
+    Header set Cache-Control "no-cache"
+  </IfModule>
+  <IfModule mod_expires.c>
+    ExpiresActive Off
+  </IfModule>
+</FilesMatch>
